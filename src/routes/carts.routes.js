@@ -12,4 +12,10 @@ router.get(`/carts/:cid`,async(req,res)=>{
     res.status(200).send(await cartManager.cart.listCartProducts(id))
 })
 
+router.post(`/carts/:cid/product/:pid`,async(req,res)=>{
+    let cid=parseInt(req.params.cid)
+    let pid=parseInt(req.params.pid)
+    res.status(200).send(await cartManager.cart.addCartProduct(cid,pid))
+})
+
 module.exports = router
