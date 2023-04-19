@@ -40,6 +40,16 @@ class CartManager {
         return `Carrito con ID:${CartManager.cid} creado`
     }
 
+    async listCartProducts(cid){
+        let array=await this.readFromFile()
+        const elemento=array.find(e=>e.id===cid)
+        if(elemento===undefined){
+            return "Este CID no existe"
+        }
+        else{
+            return elemento.products
+        }
+    }
 
 }
 
