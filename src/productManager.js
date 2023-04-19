@@ -5,12 +5,12 @@ class ProductManager {
     constructor(pathCustom) {
         this.products = [];
         this.pathCustom = pathCustom;
-        // this.writeToFile(this.products)
+        
 
     }
     writeToFile = async (productos) => {
         await fs.promises.writeFile(this.pathCustom, JSON.stringify(productos))
-        console.log("Archivo Creado")
+        
     }
 
     readFromFile =  async () => {
@@ -37,10 +37,10 @@ class ProductManager {
         })
 
         if (title == undefined || description == undefined || price == undefined || thumbnails == undefined || code == undefined || stock == undefined) {
-            console.log("Se deben completar todos los campos para agregar el producto")
+            
             return "Se deben completar todos los campos para agregar el producto"
         } else if (codigoRepetido == true) {
-            console.log("El codigo del Producto ya esta registrado, por favor seleccionar otro codigo")
+            
             return "El codigo ingresado ya existe, por favor seleccione otro"
         }
         else {
@@ -70,7 +70,7 @@ class ProductManager {
    async getProducts() {
         
             const arreglo = await this.readFromFile()
-            console.log(arreglo)
+            
             return arreglo
         }
        
@@ -84,10 +84,10 @@ class ProductManager {
         const arreglo = await this.readFromFile()
         const elemento = arreglo.find(e => e.id === id)
         if (elemento === undefined) {
-            console.log("Not found")
+            
             return "Not Found"
         } else {
-            console.log(elemento)
+            
             return elemento
         }
     }
@@ -100,7 +100,7 @@ class ProductManager {
         })
        
         if (indexElemento === -1) {
-            console.log("Not found")
+            
             return "Este producto no existe"
         } else {
 
@@ -118,12 +118,12 @@ class ProductManager {
             return e.id === id
         })
         if (indexElemento === -1) {
-            console.log("Not found")
+            
             return "El producto con este id no existe"
         } else {
             arregloActualizado.splice(indexElemento,1)
             await this.writeToFile(arregloActualizado)
-            console.log("elemento eliminado")
+            
             return `Se ha eliminado el producto con el id ${id}`
         }
     }

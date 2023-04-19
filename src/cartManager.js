@@ -9,7 +9,7 @@ class CartManager {
 
     writeToFile = async (cartProducts) => {
         await fs.promises.writeFile(this.pathCustom, JSON.stringify(cartProducts))
-        console.log("Archivo Creado")
+        
     }
 
     readFromFile = async () => {
@@ -23,13 +23,13 @@ class CartManager {
     async createCart() {
         let array = await this.readFromFile()
         let arrayActualizado = [...array]
-        console.log(`array length: ${array.length}`)
+        
         if (array.length == 0) {
             CartManager.cid++
         } else {
             CartManager.cid = arrayActualizado[arrayActualizado.length - 1].id
             CartManager.cid++
-            console.log(`Entro al else y el cid es ${CartManager.cid}`)
+            
         }
         const newCart = {
             id: CartManager.cid,
@@ -60,7 +60,7 @@ class CartManager {
         })
         
         if (cartIndex === -1) {
-            console.log("no existe")
+            
             return "Este CID no existe"
             
         }
